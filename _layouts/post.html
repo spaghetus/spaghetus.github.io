@@ -1,0 +1,23 @@
+---
+layout: default
+---
+
+<div vocab="https://schema.org/" typeof="BlogPosting">
+  <small>{{ page.date | date: "%-d %B %Y" }}</small>
+  <h1>{{ page.title }}</h1>
+  <p class="view">by {{ page.author | default: site.author }}</p>
+  <a hidden=true rel="author" href="/willow.html" property="author"></a>
+  <div property="articleBody">{{content}}</div>
+  <div hidden=true property="abstract">{{page.excerpt}}</div>
+  {% if page.tags %}
+  tags:
+  {% for tag in page.tags %}
+  <span property="articleSection">{{tag}}</span>
+  {%endfor%}
+  {% endif %}
+  <span hidden=true property="accessMode">textual</span>
+  <span hidden=true property="accessModeSufficient">textual</span>
+  {%if content contains "<img>"%}
+  <span hidden=true property="accessMode">visual</span>
+  {%endif%}
+</div>
