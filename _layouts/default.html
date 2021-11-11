@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ site.lang | default: " en-US" }}">
+<html lang="{{ site.lang | default: " en-US" }}" vocab="https://schema.org/">
 
 <head>
   <meta charset='utf-8'>
@@ -32,11 +32,9 @@
     </div>
   </header>
 
-  <div class="container">
-    <section id="main_content">
-      {{ content }}
-    </section>
-  </div>
+  <main class="container">
+    {{ content }}
+  </main>
 </body>
 
 </html>

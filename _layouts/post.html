@@ -1,23 +1,24 @@
 ---
 layout: default
 ---
-
-<div vocab="https://schema.org/" typeof="BlogPosting">
+<article typeof="BlogPosting" resource="{{site.url}}{{page.url}}#content">
+  <summary hidden=true property="abstract">{{page.excerpt}}</summary>
   <small>{{ page.date | date: "%-d %B %Y" }}</small>
-  <h1>{{ page.title }}</h1>
+  <time hidden=true property="dateCreated">{{ page.date | date_to_xmlschema}}</time>
+  <h1 property="title">{{ page.title }}</h1>
+  <address hidden=true class="author">{{ page.author }}</address>
+  <span hidden=true property="author" typeof="Person" resource="/willow">
+    {% include willow.html %}
+  </span>
   <p class="view">by {{ page.author | default: site.author }}</p>
-  <a hidden=true rel="author" href="/willow.html" property="author"></a>
-  <div property="articleBody">{{content}}</div>
-  <div hidden=true property="abstract">{{page.excerpt}}</div>
+  <div property="articleBody">
+    {{content}}
+  </div>
+
   {% if page.tags %}
-  tags:
   {% for tag in page.tags %}
-  <span property="articleSection">{{tag}}</span>
-  {%endfor%}
+  <span hidden=true property="keywords">{{tag}}</span>
+  {% endfor %}
+  <small>tags: <em>{{ page.tags | join: "</em> - <em>" }}</em></small>
   {% endif %}
-  <span hidden=true property="accessMode">textual</span>
-  <span hidden=true property="accessModeSufficient">textual</span>
-  {%if content contains "<img>"%}
-  <span hidden=true property="accessMode">visual</span>
-  {%endif%}
-</div>
+</article>
