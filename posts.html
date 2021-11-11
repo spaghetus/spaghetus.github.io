@@ -5,13 +5,14 @@ title: "Posts"
 
 <ul>
   {% for post in site.posts %}
-  <a href="{{site.url}}{{page.url}}#content">
-    {{post.title}}
-  </a><br>
-  <time datetime="{{ post.date }}">{{ post.date | date_to_string }}</time>
-  <blockquote>
-    {{ post.excerpt }}
-  </blockquote>
+  <li>
+    <a href="{{site.url}}{{page.url}}#content">
+      {{post.title}}
+    </a><br>
+    <time datetime="{{ post.date }}">{{ post.date | date_to_string }}</time>
+    <blockquote>
+      {{ post.excerpt }}
+    </blockquote>
   </li>
   {% endfor %}
 </ul>

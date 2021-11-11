@@ -2,14 +2,17 @@
 layout: default
 ---
 <article typeof="BlogPosting" resource="{{site.url}}{{page.url}}#content">
-  <summary hidden=true property="abstract">{{page.excerpt}}</summary>
-  <small>{{ page.date | date: "%-d %B %Y" }}</small>
-  <time hidden=true property="dateCreated">{{ page.date | date_to_xmlschema}}</time>
   <h1 property="title">{{ page.title }}</h1>
-  <address hidden=true class="author">{{ page.author }}</address>
-  <span hidden=true property="author" typeof="Person" resource="/willow">
+  <details>
+    <summary hidden property="abstract">{{page.excerpt}}</summary>
+
+  </details>
+  <small>{{ page.date | date: "%-d %B %Y" }}</small>
+  <time hidden property="dateCreated">{{ page.date | date_to_xmlschema}}</time>
+  <address hidden class="author">{{ page.author }}</address>
+  <div hidden property="author" typeof="Person" resource="/willow">
     {% include willow.html %}
-  </span>
+  </div>
   <p class="view">by {{ page.author | default: site.author }}</p>
   <div property="articleBody">
     {{content}}
@@ -17,7 +20,7 @@ layout: default
 
   {% if page.tags %}
   {% for tag in page.tags %}
-  <span hidden=true property="keywords">{{tag}}</span>
+  <span hidden property="keywords">{{tag}}</span>
   {% endfor %}
   <small>tags: <em>{{ page.tags | join: "</em> - <em>" }}</em></small>
   {% endif %}
